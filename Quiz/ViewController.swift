@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     let answerOptions : Array = [true, false]
     var currentQuestion : Question!
     var questionNumber: Int = 0
+    var score: Int = 0
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -22,6 +23,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         nextQuestion()
+        updateUI()
     }
 
 
@@ -32,16 +34,27 @@ class ViewController: UIViewController {
     
     
     func updateUI() {
-      
+        scoreLabel.text = "Score: \(score)"
+        progressLabel.text = "\(questionNumber+1)/\(allQuestions.questionList.count)"
     }
     
 
     func nextQuestion() {
-        if questionNumber <= allQuestions.questionList.count-1 {
+        
+        if questionNumber+1 < allQuestions.questionList.count {
             currentQuestion = allQuestions.questionList[questionNumber]
             questionLabel.text = currentQuestion.questionText
         } else {
-            print("Congratulations, you've made it to the end of the quiz.")
+            
+            let alert = UIAlertController(title: "Great Job!", message: "Congratulations, you've made it to the end of the quiz with a score of \(score).", preferredStyle: .alert)
+            
+            let restartAction = UIAlertAction(title: "Restart Quiz", style: .default) { (UIAlertAction) in
+                self.startOver()
+            }
+            
+            alert.addAction(restartAction)
+            
+            present(alert, animated: true, completion: nil)
         }
     }
     
@@ -49,17 +62,20 @@ class ViewController: UIViewController {
     func checkAnswer(selectedAnswer: Bool) {
        
         if selectedAnswer == currentQuestion.answer {
-            print("Correct!")
-        } else {
-            print("Incorrect!")
+            score += 1
         }
+        
         questionNumber += 1
         nextQuestion()
+        updateUI()
     }
     
     
     func startOver() {
-       
+       questionNumber = 0
+        score = 0
+        updateUI()
+        nextQuestion()
     }
     
 
