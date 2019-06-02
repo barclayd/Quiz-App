@@ -3,7 +3,7 @@
 //  Quiz
 //
 //  Created by Daniel Barclay on 01/06/2019.
-//  Copyright © 2019 London App Brewery. All rights reserved.
+//  Copyright © 2019 Daniel. All rights reserved.
 //
 
 import Foundation
