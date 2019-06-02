@@ -11,7 +11,8 @@ class ViewController: UIViewController {
     
     let allQuestions : QuestionBank = QuestionBank()
     let answerOptions : Array = [true, false]
-    var correctAnswer : Bool!
+    var currentQuestion : Question!
+    var questionNumber: Int = 0
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -20,9 +21,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let firstQuestion = allQuestions.questionList[0]
-        questionLabel.text = firstQuestion.questionText
-        correctAnswer = firstQuestion.answer
+        nextQuestion()
     }
 
 
@@ -38,17 +37,24 @@ class ViewController: UIViewController {
     
 
     func nextQuestion() {
-        
+        if questionNumber <= allQuestions.questionList.count-1 {
+            currentQuestion = allQuestions.questionList[questionNumber]
+            questionLabel.text = currentQuestion.questionText
+        } else {
+            print("Congratulations, you've made it to the end of the quiz.")
+        }
     }
     
     
     func checkAnswer(selectedAnswer: Bool) {
        
-        if selectedAnswer == correctAnswer {
+        if selectedAnswer == currentQuestion.answer {
             print("Correct!")
         } else {
             print("Incorrect!")
         }
+        questionNumber += 1
+        nextQuestion()
     }
     
     
