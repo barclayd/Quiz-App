@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import AudioToolbox
+
 
 class ViewController: UIViewController {
     
@@ -88,13 +90,16 @@ class ViewController: UIViewController {
         if selectedAnswer == currentQuestion.answer {
             score += 1
             ProgressHUD.showSuccess("Correct!")
+            AudioServicesPlaySystemSound(1520)
         } else {
             ProgressHUD.showError("Wrong!")
+            AudioServicesPlaySystemSound(1102)
         }
     }
     
     
     func startOver() {
+        AudioServicesPlaySystemSound(1107)
        questionNumber = 0
         score = 0
         updateUI()
