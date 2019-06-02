@@ -4,6 +4,11 @@ Quiz app to check your knowledge and track your progress. Built for iOS using Sw
 
 ### Demo
 
+
+<p align="center">
+  <img alt="Quiz App Demo GIF" src='https://user-images.githubusercontent.com/39765499/58767662-b3ca4400-8586-11e9-91a0-38df1505cf8a.gif'>
+</p>
+
 <p align="center">
   <img alt="Quiz App" src='https://user-images.githubusercontent.com/39765499/58762698-4f898f00-854a-11e9-8a2b-79b437458edd.png'>
 </p>
